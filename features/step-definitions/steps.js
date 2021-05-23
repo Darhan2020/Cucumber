@@ -2,11 +2,15 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import LoginPage from '../pageobjects/login.page';
 import SecurePage from '../pageobjects/secure.page';
 import GoogleSearch from '../pageobjects/google.page';
+import YahooSearch from '../pageobjects/yahoo.page';
+import YandexSearch from '../pageobjects/yandex.page';
 import { expect } from 'chai';
 
 const pages = {
     login: LoginPage,
-    google: GoogleSearch
+    google: GoogleSearch,
+    yahoo: YahooSearch,
+    yandex: YandexSearch
 }
 
 Given(/^I am on the (\w+) page$/, async (page) => {
@@ -37,3 +41,37 @@ Then(/^I see the results provided by (\w+)$/, async (searchEngine) => {
         default: break;   
     }
 });
+
+When(/^I search (\w+) for (.+)$/, async (searchEngine, phrase) => {
+    switch(searchEngine){   
+        case 'yahoo': await YahooSearch.search(phrase);
+        break;
+        default: break;   
+    }
+    });
+    
+Then(/^I see the results provided by (\w+)$/, async (searchEngine) => {
+        switch(searchEngine){   
+            case 'yahoo': await expect(true).to.be.true;
+            break;
+            default: break;   
+    }
+    });
+
+When(/^I search (\w+) for (.+)$/, async (searchEngine, phrase) => {
+    switch(searchEngine){   
+        case 'yandex': await YandexSearch.search(phrase);
+        break;
+        default: break;   
+    }
+    });
+        
+
+Then(/^I see the results provided by (\w+)$/, async (searchEngine) => {
+        switch(searchEngine){   
+        case 'yandex': await expect(true).to.be.true;
+        break;
+        default: break;   
+    }
+    });
+    
