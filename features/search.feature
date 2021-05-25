@@ -16,3 +16,14 @@ Scenario: Verify yandex.ru search
 Given I am on the yandex page
 When I search yandex for IT start
 Then I see the results provided by yandex
+
+Scenario Outline: Verify search page
+Given I am on the <name> page
+When I search <name> for <phrase>
+Then I see the results provided by <name>
+
+Examples:
+    | name | phrase |
+    | google  | IT Start  |
+    | yahoo  | Timur  |
+    | yandex  | Barak  |

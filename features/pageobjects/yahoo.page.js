@@ -3,10 +3,10 @@ class YahooSearch {
       return browser.url("https://yahoo.com");
     }
     get inputSearch() {
-      return $('[name="ybar_mod_searchbox_s"]');
+      return $('#ybar-sbq');
     }
     get buttonSearch() {
-      return $('[value="Search"]');
+      return $('#ybar-search');
     }
     async search(phrase) {
       await (await this.inputSearch).setValue(phrase);
